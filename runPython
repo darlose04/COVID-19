@@ -1,0 +1,6 @@
+#!/bin/bash
+echo "Running Python data scripts" > runPython.out
+
+python3 dataParse/deaths_us.py
+
+echo "Scripts done running" > runPython.out
