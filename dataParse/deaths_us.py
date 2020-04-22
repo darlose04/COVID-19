@@ -9,6 +9,15 @@ yesterday = us_deaths["4/20/20"]
 today = us_deaths["4/21/20"]
 first_date = "1/22/20"
 
-print(datetime.datetime.now())
+# print(datetime.datetime.now())
 
-print(today.sum() - yesterday.sum())
+# print(today.sum() - yesterday.sum())
+
+# for col in us_deaths:
+#   print(col)
+
+dates = us_deaths.columns[12:]
+
+
+print(dates[-1])
+print(us_deaths[dates[-1]].sum())
