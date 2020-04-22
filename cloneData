@@ -1,0 +1,7 @@
+#!/bin/bash
+# Clone COVID-19 data from Github Repository
+
+echo "This script ran at $(date +%B%d,%T)" > cloneData.out
+echo >> cloneData.out
+git clone https://github.com/CSSEGISandData/COVID-19.git covidData
+echo "This is the end of the script" >> cloneData.out
