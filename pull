@@ -1,9 +1,0 @@
-#!/bin/bash
-
-echo "Pulling data from COVID-19 Github Repository" > pull.out
-
-cd covidData/
-git pull
-cd ../
-
-echo "Data updated" >> pull.out
