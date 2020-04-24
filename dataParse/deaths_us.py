@@ -24,5 +24,7 @@ dates = us_deaths.columns[12:] # ints
 
 # print(type(us_deaths[latitude]))
 
-for item in us_deaths[dates[-1]]:
-  print(type(item))
+for item in us_deaths[uid]:
+  # the UID column is made up of floats for some reason, even though they appear to be ints in the csv
+  # probably should convert them to ints before putting them into SQL
+  print(type(int(item)))
