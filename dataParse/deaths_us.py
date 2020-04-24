@@ -9,10 +9,6 @@ us_deaths = pd.read_csv(csv_path + 'time_series_covid19_deaths_US.csv')
 # today = us_deaths["4/21/20"]
 # first_date = "1/22/20"
 
-# print(datetime.datetime.now())
-
-# print(today.sum() - yesterday.sum())
-
 dates = us_deaths.columns[12:]
 
 for item in dates:
