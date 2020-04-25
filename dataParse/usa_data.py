@@ -27,18 +27,47 @@ longitude = us_deaths.columns[9] # float
 population = us_deaths.columns[11] # int
 #dates = us_deaths.columns[12:] # ints
 
-# want to grab every item in uid column except for last row since last row is NaN
+# want to grab every item in columns except for last row since last row is NaN
+# Last row also doesn't have useful info
 uid_vals = us_deaths[uid][:-1]
+city_vals = us_deaths[city][:-1]
+province_state_vals = us_deaths[province_state][:-1]
+latitude_vals = us_deaths[latitude][:-1]
+longitude_vals = us_deaths[longitude][:-1]
+population_vals = us_deaths[population][:-1]
 
-for num in uid_vals:
-  num = int(num)
-  print(num)
+mycursor = mydb.cursor()
 
+# create db table
+# mycursor.execute("CREATE TABLE usa (UID INT PRIMARY KEY, City VARCHAR(100), Province_State VARCHAR(100), Latitude FLOAT(10, 8), Longitude FLOAT(11,8), Population INT)")
 
+# inserting values into table
+# sql = "INSERT INTO usa (UID) VALUES (%s)"
+# uid_arr = []
 
+# for num in uid_vals:
+#   uid_arr.append((num,))
 
-# for item in us_deaths[latitude]:
-#   if item > 100:
-#     print("Yes")
-  # else:
-  #   print("no")
+# mycursor.executemany(sql, uid_arr)
+# mydb.commit()
+
+def insert_data(col, data):
+  sql = f'INSERT INTO usa ({col}) VALUES (%s)'
+  data_arr = []
+  # account for NaN values in csv
+  nan_rows = data.isnull()
+
+  for item in data:
+
+    data_arr.append((item,))
+
+  mycursor.executemany(sql, data_arr)
+  mydb.commit()
+
+# insert_data("City", city_vals)
+
+nan_rows = city_vals.isnull()
+print(nan_rows)
+
+# for item in nan_rows:
+  # print(item)
