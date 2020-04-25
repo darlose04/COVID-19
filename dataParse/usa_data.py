@@ -24,13 +24,16 @@ dates = us_deaths.columns[12:] # ints
 
 # print(type(us_deaths[latitude]))
 
-# for item in us_deaths[uid]:
+for item in us_deaths[uid]:
   # the UID column is made up of floats for some reason, even though they appear to be ints in the csv
   # probably should convert them to ints before putting them into SQL
   # print(type(int(item)))
+  # print(item)
+  # if int(item) == 84001000:
+  #   print(item)
 
-for item in us_deaths[latitude]:
-  if item > 100:
-    print("Yes")
+# for item in us_deaths[latitude]:
+#   if item > 100:
+#     print("Yes")
   # else:
   #   print("no")
