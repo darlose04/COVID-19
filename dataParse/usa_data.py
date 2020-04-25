@@ -28,7 +28,6 @@ population = us_deaths.columns[11] # int
 
 # want to grab every item in columns except for last row since last row is NaN
 # Last row also doesn't have useful info
-# uid_vals = us_deaths[uid][:-1]
 city_vals = us_deaths[city][:-1]
 province_state_vals = us_deaths[province_state][:-1]
 latitude_vals = us_deaths[latitude][:-1]
@@ -56,28 +55,3 @@ data_arr = list(zip(city_arr, province_state_vals, latitude_vals, longitude_vals
 # print(data_arr)
 mycursor.executemany(sql, data_arr)
 mydb.commit()
-
-def insert_data(col, data):
-  sql = f'INSERT INTO usa ({col}) VALUES (%s)'
-  data_arr = []
-
-  for item in data:
-    if item != item:
-      data_arr.append((None,))
-    else:
-      data_arr.append((item,))
-
-  mycursor.execute(sql, data_arr)
-  mydb.commit()
-
-# insert_data("City", city_vals)
-# insert_data("State", province_state_vals)
-# insert_data("Latitude", latitude_vals)
-# insert_data("Longitude", longitude_vals)
-# insert_data("Population", population_vals)
-
-# print(population_vals)
-# for item in population_vals:
-#   print(type(item))
-
-# print(province_state_vals)
