@@ -30,6 +30,11 @@ population = us_deaths.columns[11] # int
 # want to grab every item in columns except for last row since last row is NaN
 # Last row also doesn't have useful info
 uid_vals = us_deaths[uid][:-1]
+# convert floats in uid column to ints for db
+int_uid = []
+for item in uid_vals:
+  int_uid.append(int(item))
+
 city_vals = us_deaths[city][:-1]
 province_state_vals = us_deaths[province_state][:-1]
 latitude_vals = us_deaths[latitude][:-1]
@@ -37,6 +42,9 @@ longitude_vals = us_deaths[longitude][:-1]
 population_vals = us_deaths[population][:-1]
 
 mycursor = mydb.cursor()
+
+
+
 
 # create db table
 # mycursor.execute("CREATE TABLE usa (UID INT PRIMARY KEY, City VARCHAR(100), Province_State VARCHAR(100), Latitude FLOAT(10, 8), Longitude FLOAT(11,8), Population INT)")
@@ -58,16 +66,31 @@ def insert_data(col, data):
   nan_rows = data.isnull()
 
   for item in data:
-
-    data_arr.append((item,))
+    if item != item:
+      data_arr.append(("",))
+    else:
+      data_arr.append((item,))
 
   mycursor.executemany(sql, data_arr)
   mydb.commit()
 
+# insert_data("UID", uid_vals)
 # insert_data("City", city_vals)
+# insert_data("Province_State", province_state_vals)
+# insert_data("Latitude", latitude_vals)
+# insert_data("Longitude", longitude_vals)
+# insert_data("Population", population_vals)
 
-nan_rows = city_vals.isnull()
-print(nan_rows)
+# nan_rows = city_vals.isnull()
+# print(nan_rows)
+
+# print(city_vals)
+
+# for item in city_vals:
+#   if item != item:
+#     print("NaN")
+#   else:
+#     print(item)
 
 # for item in nan_rows:
   # print(item)
