@@ -23,5 +23,17 @@ mycursor.execute("CREATE TABLE IF NOT EXISTS deaths (UID INT AUTO_INCREMENT PRIM
 # for item in dates:
 #   mycursor.execute(f"ALTER TABLE deaths ADD COLUMN `{item}` INT FIRST")
 
-for item in reversed(dates):
-  mycursor.execute(f"ALTER TABLE deaths ADD COLUMN `{item}` INT AFTER UID")
+# reverse array in order to add items in sql table in proper order
+# for item in reversed(dates):
+#   mycursor.execute(f"ALTER TABLE deaths ADD COLUMN `{item}` INT AFTER UID")
+#   sql = f"INSERT INTO deaths (`{item}`) VALUES (%s)"
+#   deaths = us_deaths[item]
+
+# print(us_deaths[dates[-1]])
+
+for item in dates:
+  for num in us_deaths[item]:
+    print(item, num)
+
+# for item in dates:
+  # print(us_deaths[item[0]])
