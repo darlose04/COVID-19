@@ -13,10 +13,6 @@ mydb = mysql.connector.connect(
   database='covid19'
 )
 
-# yesterday = us_deaths["4/20/20"]
-# today = us_deaths["4/21/20"]
-# first_date = "1/22/20"
-
 # Make variables for each column from the csv that I want to push into SQL
 
 uid = us_deaths.columns[0] # int or float
@@ -52,6 +48,5 @@ for item in city_vals:
 
 data_arr = list(zip(city_arr, province_state_vals, latitude_vals, longitude_vals, population_vals))
 
-# print(data_arr)
 mycursor.executemany(sql, data_arr)
 mydb.commit()
