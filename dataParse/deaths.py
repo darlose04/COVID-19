@@ -18,7 +18,10 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-# mycursor.execute("CREATE TABLE deaths (UID INT AUTO_INCREMENT PRIMARY KEY)")
+mycursor.execute("CREATE TABLE IF NOT EXISTS deaths (UID INT AUTO_INCREMENT PRIMARY KEY)")
 
-mycursor.execute(f"ALTER TABLE deaths ADD COLUMN `01/22/20` INT AFTER UID")
+# for item in dates:
+#   mycursor.execute(f"ALTER TABLE deaths ADD COLUMN `{item}` INT FIRST")
 
+for item in reversed(dates):
+  mycursor.execute(f"ALTER TABLE deaths ADD COLUMN `{item}` INT AFTER UID")
