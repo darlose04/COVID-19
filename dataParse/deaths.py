@@ -6,11 +6,7 @@ csv_path = '/home/zach/Storage/Projects/COVID-19/covidData/csse_covid_19_data/cs
 
 us_deaths = pd.read_csv(csv_path + 'time_series_covid19_deaths_US.csv')
 
-uid = us_deaths.columns[0]
 dates = us_deaths.columns[12:]
-
-# want to grab every item in uid column except for last row since last row is NaN
-uid_vals = us_deaths[uid][:-1]
 
 # Create database connection
 mydb = mysql.connector.connect(
@@ -22,5 +18,6 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-mycursor.execute("CREATE TABLE deaths (UID INT PRIMARY KEY)")
+# mycursor.execute("CREATE TABLE deaths (UID INT AUTO_INCREMENT PRIMARY KEY)")
 
+# mycursor.execute(f"ALTER TABLE deaths ADD COLUMN FIRST INT AFTER UID")
