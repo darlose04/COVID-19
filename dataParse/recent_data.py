@@ -33,10 +33,21 @@ columns = ['UID']
 for header in dates:
   columns.append(header)
 
+data_input = []
+
 for header in dates:
-  for item in us_deaths[header]:
-    print(item)
+  data_input.append(us_deaths[header])
+
+last_column = []
+
+for item in data_input[-1]:
+  last_column.append(item)
 
 
-# coviddeaths = pd.DataFrame([uid_arr, ], columns=columns)
-# coviddeaths.to_csv('deaths.csv')
+zipcol = list(zip(uid_arr, last_column))
+print(zipcol)
+
+
+
+coviddeaths = pd.DataFrame(zipcol, columns=['UID', '4/25/20'],)
+coviddeaths.to_csv('deaths.csv')
