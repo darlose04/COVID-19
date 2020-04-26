@@ -26,7 +26,17 @@ while increment < 3262:
 dates = us_deaths.columns[12:]
 # print(dates)
 
+# print(uid_arr)
+
 columns = ['UID']
 
 for header in dates:
   columns.append(header)
+
+for header in dates:
+  for item in us_deaths[header]:
+    print(item)
+
+
+# coviddeaths = pd.DataFrame([uid_arr, ], columns=columns)
+# coviddeaths.to_csv('deaths.csv')
