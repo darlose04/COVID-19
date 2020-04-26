@@ -50,8 +50,9 @@ def get_recent_data(recent_column_date, yesterday, data, table_name):
   for num in data[new_column][:-1]:
     new_data_arr.append((num,))
 
-  
+  mycursor.executemany(sql, new_data_arr)
 
+mydb.commit()
 
 
 
