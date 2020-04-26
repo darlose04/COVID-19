@@ -1,5 +1,5 @@
 import pandas as pd
-import mysql.connector
+
 import os
 import datetime
 
@@ -9,14 +9,7 @@ us_deaths = pd.read_csv(csv_path + 'time_series_covid19_deaths_US.csv')
 us_confirmed = pd.read_csv(csv_path + 'time_series_covid19_confirmed_US.csv')
 
 # Create database connection
-mydb = mysql.connector.connect(
-  host='localhost',
-  user='zach',
-  passwd=os.environ['DBPASSWD'],
-  database='covid19'
-)
 
-mycursor = mydb.cursor()
 
 todays_date = datetime.date.today()
 # print(todays_date.year)
@@ -37,18 +30,3 @@ The subtraction from the current date could (probably will)
 cause an issue when the month changes. Not sure yet.
 '''
 
-def get_recent_data(recent_column_date, yesterday, data, table_name):
-  mycursor.execute(f"ALTER TABLE {table_name} ADD `{yesterday}` INT AFTER `{recent_column_date}`")
-  new_column = data.columns[-1]
-  stat_values = data[new_column][:-1]
-  data_arr = list(zip(stat_values))
-  
-  sql = f"INSERT INTO {table_name}(`{yesterday}`) VALUES (%s)"
-  mycursor.executemany(sql, data_arr)
-
-get_recent_data(two_days_prior, yesterday, us_deaths, 'deaths')
-# get_recent_data(two_days_prior, yesterday, us_confirmed, 'confirmed')
-
-mydb.commit()
-mycursor.close()
-mydb.close()
