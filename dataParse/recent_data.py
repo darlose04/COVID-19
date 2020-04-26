@@ -36,6 +36,12 @@ two_days_prior = str(current_month) + "/" + str(current_day - 2) + "/" + str(cur
 # print(type(two_days_prior))
 # print(two_days_prior)
 
+'''
+There could be an issue with the way the dates are created.
+The subtraction from the current date could (probably will) 
+cause an issue when the month changes. Not sure yet.
+'''
+
 def get_recent_data(recent_column_date, yesterday, data, table_name):
   sql = f"ALTER TABLE {table_name} ADD `{yesterday}` INT AFTER `{recent_column_date}`"
   new_column = data.columns[-1]
