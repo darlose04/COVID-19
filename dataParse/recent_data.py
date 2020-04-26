@@ -29,8 +29,8 @@ current_year = todays_date.year
 current_month = todays_date.month
 current_day =  todays_date.day
 
-yesterday = str(current_month) + "/" + str(current_day - 1) + "/" + str(current_year)
-two_days_prior = str(current_month) + "/" + str(current_day - 2) + "/" + str(current_year)
+yesterday = str(current_month) + "/" + str(current_day - 1) + "/" + str(current_year)[2:]
+two_days_prior = str(current_month) + "/" + str(current_day - 2) + "/" + str(current_year)[2:]
 # print(type(yesterday))
 # print(yesterday)
 # print(type(two_days_prior))
