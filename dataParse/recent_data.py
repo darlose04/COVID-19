@@ -24,9 +24,6 @@ while increment < 3262:
   increment += 1
 
 dates = us_deaths.columns[12:]
-# print(dates)
-
-# print(uid_arr)
 
 columns = ['UID']
 
@@ -34,20 +31,24 @@ for header in dates:
   columns.append(header)
 
 data_input = []
+data_input.append(uid_arr)
 
 for header in dates:
-  data_input.append(us_deaths[header])
+  sub_arr = []
+  
+  for item in us_deaths[header]:
+    sub_arr.append(item)
+  
+  data_input.append(sub_arr)
 
-last_column = []
+# print(len(data_input[10]))
+# print(data_input[1])
 
-for item in data_input[-1]:
-  last_column.append(item)
+# print(us_deaths[dates])
 
 
-zipcol = list(zip(uid_arr, last_column))
+zipcol = zip(data_input)
 print(zipcol)
 
-
-
-coviddeaths = pd.DataFrame(zipcol, columns=['UID', '4/25/20'],)
+coviddeaths = pd.DataFrame(data_input, columns=columns,)
 coviddeaths.to_csv('deaths.csv')
