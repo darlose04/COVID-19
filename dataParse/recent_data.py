@@ -23,4 +23,10 @@ while increment < 3262:
   uid_arr.append(increment)
   increment += 1
 
+dates = us_deaths.columns[12:]
+# print(dates)
 
+columns = ['UID']
+
+for header in dates:
+  columns.append(header)
