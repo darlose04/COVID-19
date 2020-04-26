@@ -43,18 +43,17 @@ cause an issue when the month changes. Not sure yet.
 '''
 
 def get_recent_data(recent_column_date, yesterday, data, table_name):
-  sql = f"ALTER TABLE {table_name} ADD `{yesterday}` INT AFTER `{recent_column_date}`"
+  mycursor.execute(f"ALTER TABLE {table_name} ADD `{yesterday}` INT AFTER `{recent_column_date}`")
   new_column = data.columns[-1]
   new_data_arr = []
 
   for num in data[new_column][:-1]:
-    new_data_arr.append((num,))
+    new_data_arr.append(num)
 
-  mycursor.executemany(sql, new_data_arr)
+  # mycursor.executemany(sql, new_data_arr)
 
-mydb.commit()
+# mycursor.execute("ALTER TABLE deaths ADD `4/30/20` INT AFTER `4/24/20`")
+# mydb.commit()
 
-
-
-get_recent_data(two_days_prior, yesterday, us_deaths, 'deaths')
+# get_recent_data(two_days_prior, yesterday, us_deaths, 'deaths')
 # get_recent_data(two_days_prior, yesterday, us_confirmed, 'confirmed')
