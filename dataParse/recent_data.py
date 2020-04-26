@@ -18,11 +18,6 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-# recent_column = us_deaths.columns[-1]
-
-# for item in us_deaths[recent_column][:-1]:
-  # print(item)
-
 todays_date = datetime.date.today()
 # print(todays_date.year)
 current_year = todays_date.year
@@ -42,18 +37,21 @@ The subtraction from the current date could (probably will)
 cause an issue when the month changes. Not sure yet.
 '''
 
+
 def get_recent_data(recent_column_date, yesterday, data, table_name):
   mycursor.execute(f"ALTER TABLE {table_name} ADD `{yesterday}` INT AFTER `{recent_column_date}`")
   new_column = data.columns[-1]
-  new_data_arr = []
-
-  for num in data[new_column][:-1]:
-    new_data_arr.append(num)
-
-  # mycursor.executemany(sql, new_data_arr)
-
-# mycursor.execute("ALTER TABLE deaths ADD `4/30/20` INT AFTER `4/24/20`")
-# mydb.commit()
+  stat_values = data[new_column][:-1]
+  data_arr = list(zip(stat_values))
+  
+  sql = f"INSERT INTO {table_name}(`{yesterday}`) VALUES (%s)"
+  mycursor.executemany(sql, data_arr)
 
 # get_recent_data(two_days_prior, yesterday, us_deaths, 'deaths')
-# get_recent_data(two_days_prior, yesterday, us_confirmed, 'confirmed')
+get_recent_data(two_days_prior, yesterday, us_confirmed, 'confirmed')
+
+mydb.commit()
+mycursor.close()
+mydb.close()
+
+
