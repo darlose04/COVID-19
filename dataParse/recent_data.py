@@ -37,7 +37,6 @@ The subtraction from the current date could (probably will)
 cause an issue when the month changes. Not sure yet.
 '''
 
-
 def get_recent_data(recent_column_date, yesterday, data, table_name):
   mycursor.execute(f"ALTER TABLE {table_name} ADD `{yesterday}` INT AFTER `{recent_column_date}`")
   new_column = data.columns[-1]
@@ -47,11 +46,9 @@ def get_recent_data(recent_column_date, yesterday, data, table_name):
   sql = f"INSERT INTO {table_name}(`{yesterday}`) VALUES (%s)"
   mycursor.executemany(sql, data_arr)
 
-# get_recent_data(two_days_prior, yesterday, us_deaths, 'deaths')
-get_recent_data(two_days_prior, yesterday, us_confirmed, 'confirmed')
+get_recent_data(two_days_prior, yesterday, us_deaths, 'deaths')
+# get_recent_data(two_days_prior, yesterday, us_confirmed, 'confirmed')
 
 mydb.commit()
 mycursor.close()
 mydb.close()
-
-
