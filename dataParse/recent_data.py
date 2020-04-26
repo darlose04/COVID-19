@@ -18,7 +18,7 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-recent_column = us_deaths.columns[-1]
+# recent_column = us_deaths.columns[-1]
 
 # for item in us_deaths[recent_column][:-1]:
   # print(item)
@@ -31,7 +31,23 @@ current_day =  todays_date.day
 
 yesterday = str(current_month) + "/" + str(current_day - 1) + "/" + str(current_year)
 two_days_prior = str(current_month) + "/" + str(current_day - 2) + "/" + str(current_year)
-print(yesterday)
-print(two_days_prior)
+# print(type(yesterday))
+# print(yesterday)
+# print(type(two_days_prior))
+# print(two_days_prior)
 
-# def get_recent_data(recent_column_date, yesterday, data):
+def get_recent_data(recent_column_date, yesterday, data, table_name):
+  sql = f"ALTER TABLE {table_name} ADD `{yesterday}` INT AFTER `{recent_column_date}`"
+  new_column = data.columns[-1]
+  new_data_arr = []
+
+  for num in data[new_column][:-1]:
+    new_data_arr.append((num,))
+
+  
+
+
+
+
+get_recent_data(two_days_prior, yesterday, us_deaths, 'deaths')
+# get_recent_data(two_days_prior, yesterday, us_confirmed, 'confirmed')
