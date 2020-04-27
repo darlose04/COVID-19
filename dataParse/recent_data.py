@@ -13,48 +13,47 @@ us_confirmed = pd.read_csv(csv_path + 'time_series_covid19_confirmed_US.csv')
 
 # print(engine)
 
-uid_arr = []
-increment = 1
 
-# create ids for new csv
-while increment < 3262:
-  uid_arr.append(increment)
-  increment += 1
 
-dates = us_deaths.columns[12:]
+death_dates = us_deaths.columns[12:]
+confirmed_dates = us_confirmed.columns[11:]
 
-columns = ['UID']
-# print(len(uid_arr))
-
-for header in dates:
-  columns.append(header)
-
-data_input = []
-# data_input.append(uid_arr)
-
-# for header in dates:
-#   firstItem = us_deaths[header].pop(0)
-#   data_input.append(firstItem)
-
-# print(data_input)
-count = 1
-col_arr = []
-
-while count < 3262:
-  sub_arr = []
-
-  sub_arr.append(uid_arr.pop(0))
+def create_csv(data, dates, csv_name):
+  columns = ['UID']
 
   for header in dates:
-    sub_arr.append(us_deaths[header][:-1].pop(count-1))
+    columns.append(header)
+
+  uid_arr = []
+  increment = 1
+
+  # create ids for new csv
+  while increment < 3262:
+    uid_arr.append(increment)
+    increment += 1
+
+  count = 1
+  col_arr = []
+
+  while count < 3262:
+    sub_arr = []
+
+    sub_arr.append(uid_arr.pop(0))
+
+    for header in dates:
+      sub_arr.append(data[header][:-1].pop(count-1))
 
 
-  col_arr.append(sub_arr)
-  # print(sub_arr)
-  count += 1
+    col_arr.append(sub_arr)
 
-# print(col_arr)
+    count += 1
+  
+  csv = csv_name + '.csv'
+
+  csv_name = pd.DataFrame(col_arr, columns=columns,)
+  csv_name.to_csv(csv)
 
 
-coviddeaths = pd.DataFrame(col_arr, columns=columns,)
-coviddeaths.to_csv('deaths.csv')
+create_csv(us_deaths, death_dates, 'deaths')
+create_csv(us_confirmed, confirmed_dates, 'cases')
+
