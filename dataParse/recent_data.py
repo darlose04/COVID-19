@@ -46,13 +46,12 @@ while count < 3262:
   sub_arr.append(uid_arr.pop(0))
 
   for header in dates:
-    sub_arr.append(us_deaths[header][:-1].pop(0))
+    sub_arr.append(us_deaths[header][:-1].pop(count-1))
 
 
   col_arr.append(sub_arr)
   # print(sub_arr)
   count += 1
-
 
 # print(col_arr)
 
