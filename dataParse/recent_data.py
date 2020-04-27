@@ -9,11 +9,9 @@ us_deaths = pd.read_csv(csv_path + 'time_series_covid19_deaths_US.csv')
 us_confirmed = pd.read_csv(csv_path + 'time_series_covid19_confirmed_US.csv')
 
 # Create database connection
-engine = create_engine(f"mysql+mysqlconnector://zach:{os.environ['DBPASSWD']}@127.0.0.1:3306/covid19")
+# engine = create_engine(f"mysql+mysqlconnector://zach:{os.environ['DBPASSWD']}@127.0.0.1:3306/covid19")
 
 # print(engine)
-
-# print(us_deaths)
 
 uid_arr = []
 increment = 1
@@ -26,29 +24,38 @@ while increment < 3262:
 dates = us_deaths.columns[12:]
 
 columns = ['UID']
+# print(len(uid_arr))
 
 for header in dates:
   columns.append(header)
 
 data_input = []
-data_input.append(uid_arr)
+# data_input.append(uid_arr)
 
-for header in dates:
+# for header in dates:
+#   firstItem = us_deaths[header].pop(0)
+#   data_input.append(firstItem)
+
+# print(data_input)
+count = 1
+col_arr = []
+
+while count < 3262:
   sub_arr = []
-  
-  for item in us_deaths[header]:
-    sub_arr.append(item)
-  
-  data_input.append(sub_arr)
 
-# print(len(data_input[10]))
-# print(data_input[1])
+  sub_arr.append(uid_arr.pop(0))
 
-# print(us_deaths[dates])
+  for header in dates:
+    sub_arr.append(us_deaths[header][:-1].pop(0))
 
 
-zipcol = zip(data_input)
-print(zipcol)
+  col_arr.append(sub_arr)
+  # print(sub_arr)
+  count += 1
 
-coviddeaths = pd.DataFrame(data_input, columns=columns,)
+
+# print(col_arr)
+
+
+coviddeaths = pd.DataFrame(col_arr, columns=columns,)
 coviddeaths.to_csv('deaths.csv')
