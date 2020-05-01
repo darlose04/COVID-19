@@ -1,7 +1,4 @@
 import pandas as pd
-from sqlalchemy import create_engine
-import mysql.connector
-import os
 
 """
 This script pulls the date columns out of the two time series CSVs from the Johns Hopkins Github repository.
@@ -14,13 +11,6 @@ csv_path = '/home/zach/Storage/Projects/COVID-19/covidData/csse_covid_19_data/cs
 
 us_deaths = pd.read_csv(csv_path + 'time_series_covid19_deaths_US.csv')
 us_confirmed = pd.read_csv(csv_path + 'time_series_covid19_confirmed_US.csv')
-
-# Create database connection
-# engine = create_engine(f"mysql+mysqlconnector://zach:{os.environ['DBPASSWD']}@127.0.0.1:3306/covid19")
-
-# print(engine)
-
-
 
 death_dates = us_deaths.columns[12:]
 confirmed_dates = us_confirmed.columns[11:]
