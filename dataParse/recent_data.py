@@ -3,6 +3,13 @@ from sqlalchemy import create_engine
 import mysql.connector
 import os
 
+"""
+This script pulls the date columns out of the two time series CSVs from the Johns Hopkins Github repository.
+The columns are then used to create another CSV file along with a column for IDs, called UIDs.
+I am doing it this way since I want to be able to store the date columns in a SQL database, but 
+I don't want all the columns that are in the original time series CSVs.
+"""
+
 csv_path = '/home/zach/Storage/Projects/COVID-19/covidData/csse_covid_19_data/csse_covid_19_time_series/'
 
 us_deaths = pd.read_csv(csv_path + 'time_series_covid19_deaths_US.csv')
