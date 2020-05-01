@@ -24,3 +24,4 @@ mycursor.execute("CREATE TABLE IF NOT EXISTS deaths (UID INT AUTO_INCREMENT PRIM
 for item in reversed(dates):
   mycursor.execute(f"ALTER TABLE deaths ADD COLUMN `{item}` INT AFTER UID")
 
+mydb.commit()

@@ -26,3 +26,5 @@ mycursor.execute("CREATE TABLE IF NOT EXISTS confirmed (UID INT AUTO_INCREMENT P
 # reverse array in order to add items in sql table in proper order
 for item in reversed(dates):
   mycursor.execute(f"ALTER TABLE confirmed ADD COLUMN `{item}` INT AFTER UID")
+
+mydb.commit()
