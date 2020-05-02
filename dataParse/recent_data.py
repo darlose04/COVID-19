@@ -38,7 +38,7 @@ def create_csv(data, dates, csv_name):
     sub_arr.append(uid_arr.pop(0))
 
     for header in dates:
-      sub_arr.append(data[header][:-1].pop(count-1))
+      sub_arr.append(data[header].pop(count-1))
 
 
     col_arr.append(sub_arr)
@@ -51,6 +51,7 @@ def create_csv(data, dates, csv_name):
   csv_name.to_csv(csv)
 
 
+# print(us_deaths['4/30/20'])
 create_csv(us_deaths, death_dates, 'deaths')
 create_csv(us_confirmed, confirmed_dates, 'cases')
 
