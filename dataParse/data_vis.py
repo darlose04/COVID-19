@@ -25,20 +25,27 @@ for column in confirmed_dates:
 # print(total_cases)
 
 # Matplotlib line chart
-# plt.plot(confirmed_dates, total_cases)
-# plt.xlabel("Dates")
-# plt.ylabel("Cases")
-# plt.title("COVID-19 Cases U.S.")
+plt.plot(confirmed_dates, total_cases)
+plt.xlabel("Dates")
+plt.ylabel("Cases")
+plt.title("COVID-19 Cases U.S.")
 
-case_and_deaths = list(zip(total_cases, total_deaths))
+plt.plot(death_dates, total_deaths)
+plt.xlabel("Dates")
+plt.ylabel("Deaths")
+plt.title("COVID-19 Deaths U.S.")
 
-cases_df = pd.DataFrame(dict(dates=confirmed_dates, cases=total_cases))
+# case_and_deaths = list(zip(total_cases, total_deaths))
+
+# cases_df = pd.DataFrame(dict(dates=confirmed_dates, cases=total_cases))
 # print(cases_df)
 
-plt.plot(confirmed_dates, case_and_deaths)
-plt.xlabel("Dates")
-plt.ylabel("Cases and Deaths")
+fig = plt.figure()
+ax = fig.add_subplot(111)
 
-
+ax.plot(confirmed_dates, total_cases, label="Cases")
+ax.plot(confirmed_dates, total_deaths, label="Deaths")
+ax.set_title('COVID-19 Cases and Deaths, U.S.')
+ax.legend()
 
 plt.show()
