@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 csv_path = '/home/zach/Storage/Projects/COVID-19/covidData/csse_covid_19_data/csse_covid_19_time_series/'
 
@@ -22,8 +23,10 @@ for column in confirmed_dates:
 # print(total_deaths)
 # print(total_cases)
 
-plt.plot(death_dates, total_deaths)
-plt.xlabel("Dates")
-plt.ylabel("Deaths")
-plt.title("COVID-19 Deaths U.S.")
-plt.show()
+# Matplotlib line chart
+# plt.plot(death_dates, total_deaths)
+# plt.xlabel("Dates")
+# plt.ylabel("Deaths")
+# plt.title("COVID-19 Deaths U.S.")
+# plt.show()
+
