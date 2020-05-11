@@ -48,4 +48,10 @@ yesterday = f'{yesterday_month}-{yesterday_day}-{yesterday_year}'
 
 daily_report = pd.read_csv(csv_path + yesterday + '.csv')
 
+del daily_report['Country_Region']
+del daily_report['Last_Update']
+del daily_report['FIPS']
+del daily_report['UID']
+del daily_report['ISO3']
+
 print(daily_report)
