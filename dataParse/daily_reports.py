@@ -31,6 +31,17 @@ else:
   year = datetime.now().year
 
 # create yesterday's date as a string since that will be the most recent csv in the daily reports
+if day < 10:
+  yesterday_day = f'0{day}'
+else:
+  yesterday_day = str(day)
+if month < 10:
+  yesterday_month = f'0{month}'
+else:
+  yesterday_month = str(month)
 
+yesterday_year = str(year)
+
+print(yesterday_month, yesterday_day, yesterday_year)
 
 # daily_report = pd.read_csv(csv_path + )
