@@ -4,7 +4,7 @@ import mysql.connector
 import os
 from datetime import datetime
 
-csv_path = "/home/zach/Storage/Projects/COVID-19/covidData/csse_covid_19_data/csse_covid_19_daily_reports_us"
+csv_path = "/home/zach/Storage/Projects/COVID-19/covidData/csse_covid_19_data/csse_covid_19_daily_reports_us/"
 
 # check if the date is January 1st and adjust day, month, and year accordingly
 if datetime.now().day == 1 and datetime.now().month == 1:
@@ -42,6 +42,10 @@ else:
 
 yesterday_year = str(year)
 
-print(yesterday_month, yesterday_day, yesterday_year)
+yesterday = f'{yesterday_month}-{yesterday_day}-{yesterday_year}'
 
-# daily_report = pd.read_csv(csv_path + )
+# print(yesterday)
+
+daily_report = pd.read_csv(csv_path + yesterday + '.csv')
+
+print(daily_report)
