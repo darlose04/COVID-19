@@ -53,7 +53,7 @@ del daily_report['FIPS']
 del daily_report['UID']
 del daily_report['ISO3']
 
-engine = create_engine(f"mysql+mysqlconnector://zach:{os.environ['DBPASSWD']}@127.0.0.1:3306/covid19")
+engine = create_engine(f"mysql+mysqlconnector://zach:{os.environ['DBPASSWD']}@{os.environ['DBIP']}:3306/covid19")
 daily_report.to_sql('daily_report', engine, if_exists='replace', index=True, index_label=None, method=None)
 
 # print(daily_report)
