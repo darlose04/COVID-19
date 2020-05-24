@@ -1,3 +1,4 @@
 covidData/
 /*.out
 *.csv
+/runPython.sh
