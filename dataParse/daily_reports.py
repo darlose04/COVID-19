@@ -22,9 +22,11 @@ if datetime.now().day == 1:
   if datetime.now().month == 2 or datetime.now().month == 4 or datetime.now().month == 6 or datetime.now().month == 8 or datetime.now().month == 9 or datetime.now().month == 11:
     day = 31
     month = datetime.now().month - 1
+    year = datetime.now().year
   elif datetime.now().month == 5 or datetime.now().month == 7 or datetime.now().month == 10 or datetime.now().month == 12:
     month = datetime.now().month - 1
     day = 30
+    year = datetime.now().year
 else:
   month = datetime.now().month
   day = datetime.now().day - 1
