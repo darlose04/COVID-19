@@ -25,14 +25,14 @@ def create_csv(data, dates, csv_name):
   increment = 1
 
   # create ids for new csv
-  while increment < 3262:
+  while increment < 3341:
     uid_arr.append(increment)
     increment += 1
 
   count = 1
   col_arr = []
 
-  while count < 3262:
+  while count < 3341:
     sub_arr = []
 
     sub_arr.append(uid_arr.pop(0))
