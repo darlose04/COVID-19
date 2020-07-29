@@ -2,3 +2,4 @@ covidData/
 /*.out
 *.csv
 runPython.sh
+.vscode/settings.json
