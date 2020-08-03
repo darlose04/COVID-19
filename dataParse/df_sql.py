@@ -7,8 +7,8 @@ csv_path = "/home/zach/Storage/Projects/COVID-19/"
 
 deaths = pd.read_csv(csv_path + 'deaths.csv')
 cases = pd.read_csv(csv_path + 'cases.csv')
-global_cases = pd.read_csv(csv_path + 'dataParse/global/global_cases.csv')
-global_deaths = pd.read_csv(csv_path + 'dataParse/global/global_deaths.csv')
+global_cases = pd.read_csv(csv_path + 'global_cases.csv')
+global_deaths = pd.read_csv(csv_path + 'global_deaths.csv')
 
 # delete first column that was created automatically when csv was created
 del deaths['Unnamed: 0']
