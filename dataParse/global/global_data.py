@@ -8,7 +8,7 @@ global_cases = pd.read_csv(
     csv_path + 'time_series_covid19_confirmed_global.csv')
 
 mydb = mysql.connector.connect(
-    host='localhost',
+    host=os.environ['DBIP'],
     user='zach',
     passwd=os.environ['DBPASSWD'],
     database='covid19'

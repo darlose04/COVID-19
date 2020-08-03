@@ -52,6 +52,6 @@ del global_daily_report['FIPS']
 del global_daily_report['Combined_Key']
 
 engine = create_engine(
-    f"mysql+mysqlconnector://zach:{os.environ['DBPASSWD']}@localhost:3306/covid19")
+    f"mysql+mysqlconnector://zach:{os.environ['DBPASSWD']}@{os.environ['DBIP']}:3306/covid19")
 global_daily_report.to_sql('global_daily_report', engine, if_exists='replace',
                            index=True, index_label=None, method=None)
