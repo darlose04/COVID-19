@@ -40,7 +40,7 @@ sql = "INSERT INTO usa (County, State, Latitude, Longitude, Population) VALUES (
 
 city_arr = []
 
-for item in city_vals:
+for item in county_vals:
     if item != item:
         city_arr.append(None)
     else:
