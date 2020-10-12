@@ -16,7 +16,7 @@ mydb = mysql.connector.connect(
 # Make variables for each column from the csv that I want to push into SQL
 
 uid = us_deaths.columns[0]  # int or float
-city = us_deaths.columns[5]  # string. will need to account for null values
+county = us_deaths.columns[5]  # string. will need to account for null values
 province_state = us_deaths.columns[6]  # string
 latitude = us_deaths.columns[8]  # float
 longitude = us_deaths.columns[9]  # float
@@ -24,7 +24,7 @@ population = us_deaths.columns[11]  # int
 
 # want to grab every item in columns except for last row since last row is NaN
 # Last row also doesn't have useful info
-city_vals = us_deaths[city][:-1]
+county_vals = us_deaths[county][:-1]
 province_state_vals = us_deaths[province_state][:-1]
 latitude_vals = us_deaths[latitude][:-1]
 longitude_vals = us_deaths[longitude][:-1]
@@ -33,10 +33,10 @@ population_vals = us_deaths[population][:-1]
 mycursor = mydb.cursor()
 
 # create db table
-mycursor.execute("CREATE TABLE usa (UID INT AUTO_INCREMENT PRIMARY KEY, City VARCHAR(255), State VARCHAR(255), Latitude FLOAT(10, 8), Longitude FLOAT(11,8), Population INT)")
+mycursor.execute("CREATE TABLE usa (UID INT AUTO_INCREMENT PRIMARY KEY, County VARCHAR(255), State VARCHAR(255), Latitude FLOAT(10, 8), Longitude FLOAT(11,8), Population INT)")
 
 # inserting values into table
-sql = "INSERT INTO usa (City, State, Latitude, Longitude, Population) VALUES (%s, %s, %s, %s, %s)"
+sql = "INSERT INTO usa (County, State, Latitude, Longitude, Population) VALUES (%s, %s, %s, %s, %s)"
 
 city_arr = []
 
