@@ -38,15 +38,15 @@ mycursor.execute("CREATE TABLE usa (UID INT AUTO_INCREMENT PRIMARY KEY, County V
 # inserting values into table
 sql = "INSERT INTO usa (County, State, Latitude, Longitude, Population) VALUES (%s, %s, %s, %s, %s)"
 
-city_arr = []
+county_arr = []
 
 for item in county_vals:
     if item != item:
-        city_arr.append(None)
+        county_arr.append(None)
     else:
-        city_arr.append(item)
+        county_arr.append(item)
 
-data_arr = list(zip(city_arr, province_state_vals,
+data_arr = list(zip(county_arr, province_state_vals,
                     latitude_vals, longitude_vals, population_vals))
 
 mycursor.executemany(sql, data_arr)
