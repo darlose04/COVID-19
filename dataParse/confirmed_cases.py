@@ -12,19 +12,21 @@ dates = us_confirmed.columns[11:]
 
 # Create database connection
 mydb = mysql.connector.connect(
-  host='localhost',
-  user='zach',
-  passwd=os.environ['DBPASSWD'],
-  database='covid19'
+    host='localhost',
+    user='zach',
+    passwd=os.environ['DBPASSWD'],
+    database='covid19'
 )
 
 mycursor = mydb.cursor()
 
-mycursor.execute("CREATE TABLE IF NOT EXISTS confirmed (UID INT AUTO_INCREMENT PRIMARY KEY)")
+mycursor.execute(
+    "CREATE TABLE IF NOT EXISTS confirmed (UID INT AUTO_INCREMENT PRIMARY KEY)")
 
 
 # reverse array in order to add items in sql table in proper order
 for item in reversed(dates):
-  mycursor.execute(f"ALTER TABLE confirmed ADD COLUMN `{item}` INT AFTER UID")
+    mycursor.execute(
+        f"ALTER TABLE confirmed ADD COLUMN `{item}` INT AFTER UID")
 
 mydb.commit()
