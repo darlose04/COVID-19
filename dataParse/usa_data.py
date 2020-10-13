@@ -7,7 +7,7 @@ csv_path = '/home/zach/Storage/Projects/COVID-19/covidData/csse_covid_19_data/cs
 us_deaths = pd.read_csv(csv_path + 'time_series_covid19_deaths_US.csv')
 
 mydb = mysql.connector.connect(
-    host='localhost',
+    host=os.environ['DBIP'],
     user='zach',
     passwd=os.environ['DBPASSWD'],
     database='covid19'
