@@ -24,7 +24,7 @@ def create_csv(data, dates, csv_name):
     increment = 1
 
     # create ids for new csv
-    while increment < 268:
+    while increment < 272:
         id_arr.append(increment)
         increment += 1
 
