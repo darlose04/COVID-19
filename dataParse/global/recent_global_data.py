@@ -16,6 +16,7 @@ death_dates = global_deaths.columns[4:]
 
 def create_csv(data, dates, csv_name):
     columns = ['ID']
+    dataLength = len(data)
 
     for header in dates:
         columns.append(header)
@@ -24,14 +25,14 @@ def create_csv(data, dates, csv_name):
     increment = 1
 
     # create ids for new csv
-    while increment < 272:
+    while increment < dataLength:
         id_arr.append(increment)
         increment += 1
 
     count = 1
     col_arr = []
 
-    while count < 272:
+    while count < dataLength:
         sub_arr = []
 
         sub_arr.append(id_arr.pop(0))
