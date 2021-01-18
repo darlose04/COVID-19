@@ -17,13 +17,13 @@ mydb = mysql.connector.connect(
 # Make variables for each column from the csv that I want to push into SQL
 province = global_cases.columns[0]
 country = global_cases.columns[1]
-latitude = global_cases.columns[2]
-longitude = global_cases.columns[3]
+# latitude = global_cases.columns[2]
+# longitude = global_cases.columns[3]
 
 province_vals = global_cases[province]
 country_vals = global_cases[country]
-latitude_vals = global_cases[latitude]
-longitude_vals = global_cases[longitude]
+# latitude_vals = global_cases[latitude]
+# longitude_vals = global_cases[longitude]
 
 province_arr = []
 
@@ -36,12 +36,12 @@ for item in province_vals:
 # create db table
 mycursor = mydb.cursor()
 mycursor.execute(
-    "CREATE TABLE global (ID INT AUTO_INCREMENT PRIMARY KEY, Province VARCHAR(255), Country VARCHAR(255), Latitude FLOAT(10, 8), Longitude FLOAT(11, 8))")
+    "CREATE TABLE global (ID INT AUTO_INCREMENT PRIMARY KEY, Province VARCHAR(255), Country VARCHAR(255))")
 
 # inserting values into the table
-sql = "INSERT INTO global (Province, Country, Latitude, Longitude) VALUES (%s, %s, %s, %s)"
+sql = "INSERT INTO global (Province, Country) VALUES (%s, %s)"
 
-data_arr = list(zip(province_arr, country_vals, latitude_vals, longitude_vals))
+data_arr = list(zip(province_arr, country_vals))
 
 mycursor.executemany(sql, data_arr)
 mydb.commit()
