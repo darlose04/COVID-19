@@ -20,8 +20,6 @@ def create_csv(data, dates, csv_name):
     columns = ['UID']
     dataLength = len(data)
 
-    print(dataLength)
-
     for header in dates:
         columns.append(header)
 
