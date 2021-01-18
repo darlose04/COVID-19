@@ -18,6 +18,9 @@ confirmed_dates = us_confirmed.columns[11:]
 
 def create_csv(data, dates, csv_name):
     columns = ['UID']
+    dataLength = len(data)
+
+    print(dataLength)
 
     for header in dates:
         columns.append(header)
@@ -26,14 +29,14 @@ def create_csv(data, dates, csv_name):
     increment = 1
 
     # create ids for new csv
-    while increment < 3341:
+    while increment <= dataLength:
         uid_arr.append(increment)
         increment += 1
 
     count = 1
     col_arr = []
 
-    while count < 3341:
+    while count <= dataLength:
         sub_arr = []
 
         sub_arr.append(uid_arr.pop(0))
@@ -51,6 +54,5 @@ def create_csv(data, dates, csv_name):
     csv_name.to_csv(csv)
 
 
-# print(us_deaths['4/30/20'])
 create_csv(us_deaths, death_dates, 'deaths')
 create_csv(us_confirmed, confirmed_dates, 'cases')
