@@ -21,36 +21,26 @@ counties = us_confirmed["Admin2"]
 # print(us_confirmed.iloc[0, 0:len(us_confirmed)])
 
 one_row = us_confirmed.iloc[0, 0:len(us_confirmed)]
-# print(one_row[:20])
+print(one_row[:20])
 
-for item in one_row:
-    print(item)
 
-us_data = {
-    'states': [
-        {
-            'state_name': "",
-            'counties': [
-                {
-                    'county_name': "",
-                    'cases': [
-                        {
-                          'date': 0
-                        }
-                    ],
-                    'deaths': [
-                        {
-                            'date': 0
-                        }
-                    ]
+usa_data = [
+    {
+        'state_name': '',
+        'counties': [
+            {
+                'county_name': '',
+                'cases': {
+                    '1/1/20': 0,
+                    '1/2/20': 43,
+                },
+                'deaths': {
+                    '1/1/20': 0,
+                    '1/2/20': 4,
                 }
-            ]
-        },
-        {
-            'state_name': "",
-            'counties': []
-        }
-    ]
-}
+            }
+        ]
+    }
+]
 
 # print(us_data['states'][0]['state_name'])
